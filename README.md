@@ -1,4 +1,5 @@
 <img src="/mcpwm_spwm_split_phase.png" width="600" alt="Split-phase a 20 kHz">
+
 # Inversor Split-Phase de Onda Senoidal Pura — ESP32 (MCPWM)
 
 Etapa de control para un inversor **split-phase** (fase dividida, 120/240 V)
