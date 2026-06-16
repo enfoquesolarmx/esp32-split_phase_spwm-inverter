@@ -175,6 +175,29 @@ lección que vale más que el código:
   silicio (frecuencia real, shadow en TEP de ambos operadores, etc.).
 
 ---
+## ¿Por qué el periférico MCPWM (y no ledc/PWM genérico)?
+
+La generación se hace sobre el **MCPWM** (Motor Control PWM) del ESP32, no
+sobre el PWM genérico (`ledc`), por dos características que un inversor
+necesita y el PWM genérico no ofrece de forma nativa:
+
+- **Dead-time por hardware.** El MCPWM inserta un tiempo muerto configurable
+  entre las salidas complementarias de cada rama (aquí 500 ns). Esto protege
+  el puente H contra *shoot-through* (que el lado alto y el bajo conduzcan a
+  la vez y cortocircuiten la batería). Hacerlo por software sería frágil y de
+  latencia no determinista; en hardware es exacto y automático.
+
+- **Modulación fina y determinista.** El MCPWM compara el contador del timer
+  contra un umbral (comparador) con resolución de tick (62.5 ns), y actualiza
+  el duty mediante un registro *shadow* en un punto determinista del ciclo
+  (TEP, el pico del contador). Esto permite una envolvente senoidal suave y
+  sin glitches — clave para una onda de baja distorsión.
+
+Además, el MCPWM ofrece **sincronización de timers** (phase-lock), que es lo
+que permite que los dos puentes operen en paralelo y en fase opuesta sin
+turnarse. Con el PWM genérico no habría forma limpia de coordinarlos.
+
+---
 
 <img src="/mcpwm_spwm_split_phase_01.png" width="600" alt="Split-phase a 20 kHz">
 
