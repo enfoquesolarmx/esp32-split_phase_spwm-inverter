@@ -176,6 +176,9 @@ lección que vale más que el código:
 
 ---
 
+<img src="/mcpwm_spwm_split_phase_01.png" width="600" alt="Split-phase a 20 kHz">
+
+
 ## Estado y siguientes pasos
 
 **Hecho (validado en analizador lógico):** generación split-phase, dos puentes
