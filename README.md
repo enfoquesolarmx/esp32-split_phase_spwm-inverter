@@ -1,4 +1,4 @@
-<img src="/mcpwm_spwm_split_phase.png" width="600" alt="Split-phase a 20 kHz">
+<img src="/mcpwm_spwm_split_phase_00.png" width="600" alt="Split-phase a 20 kHz">
 
 # Inversor Split-Phase de Onda Senoidal Pura — ESP32 (MCPWM)
 
